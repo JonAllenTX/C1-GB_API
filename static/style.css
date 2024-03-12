@@ -1,0 +1,93 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f5dc;
+    color: #333;
+}
+
+header {
+    text-align: center;
+    width: 100%;
+}
+
+.books-container {
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.book-container {
+    display: flex;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.book-cover {
+    width: auto;
+}
+
+.book-cover img {
+    max-width: 100%;
+    height: auto;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.book-details {
+    width: 90%;
+    padding: 20px;
+    box-sizing: border-box; /* Add this property to include padding in the width */
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+/* Remove the gap between the book cover and details */
+.book-details > *:first-child {
+    margin-top: 0;
+}
+
+.pagination-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pagination {
+    display: inline-block;
+    padding: 8px 16px;
+}
+
+.pagination a {
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+/* Add this to your existing CSS */
+.top-pagination {
+    width: 100%;
+    float: right;
+    text-align: right;
+    margin-bottom: 20px; /* Adjust as needed for spacing */
+}
+
+.bottom-pagination {
+    text-align: center;
+    margin-top: 20px;
+    width: 100%;
+}

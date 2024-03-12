@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Books Search</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header role="banner">
+        <h1>Google Books Search Results</h1>
+        <p>Total Results: {{ results.total_results }}</p>
+        <p>Most Frequent Author: {{ results.most_frequent_author }}</p>
+        <p>Publication Dates: {{ results.publication_dates }}</p>
+    </header>
+
+    <nav class="pagination top-pagination">
+        {% if results and results.total_results > 10 %}
+            <p>Page {{ page }}</p>
+            {% if page > 1 %}
+                <a href="{{ url_for('index', query=request.args.get('query'), page=page-1) }}" aria-label="Go to Previous Page">Previous</a>
+            {% endif %}
+            {% if results.total_results > page * 10 %}
+                <a href="{{ url_for('index', query=request.args.get('query'), page=page+1) }}" aria-label="Go to Next Page">Next</a>
+            {% endif %}
+        {% endif %}
+    </nav>
+
+    <main role="main">
+        <div class="books-container">
+            <!-- Book results here -->
+            {% if results.books %}
+                {% for book in results.books %}
+                    <div class="book-container">
+                        <div class="book-cover">
+                            <a href="{{ book.link }}" target="_blank" aria-label="{{ book.title }} details" title="{{ book.title }} details">
+                                <img src="{{ book.thumbnail }}" alt="{{ book.title }} Cover Photo">
+                            </a>
+                        </div>
+                        <div class="book-details">
+                            <strong>Title:</strong> {{ book.title }}<br>
+                            <strong>Authors:</strong> {{ book.authors }}<br>
+                            <strong>Description:</strong> {{ book.description }}<br>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No results found.</p>
+            {% endif %}
+        </div>
+    </main>
+
+    <nav class="pagination bottom-pagination">
+        {% if results and results.total_results > 10 %}
+            <p>Page {{ page }}</p>
+            {% if page > 1 %}
+                <a href="{{ url_for('index', query=request.args.get('query'), page=page-1) }}" aria-label="Go to Previous Page">Previous</a>
+            {% endif %}
+            {% if results.total_results > page * 10 %}
+                <a href="{{ url_for('index', query=request.args.get('query'), page=page+1) }}" aria-label="Go to Next Page">Next</a>
+            {% endif %}
+        {% endif %}
+    </nav>
+</body>
+</html>
